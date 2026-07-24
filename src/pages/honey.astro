@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const honeyItems = await getCollection("honey");
+
+// Sort alphabetically by title
+honeyItems.sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
+---
+
+<BaseLayout title="Our Honey">
+  <h1>Our Honey</h1>
+
+  {honeyItems.map((item) => (
+    <div class="card">
+      <h2>{item.data.title}</h2>
+      <p>{item.data.description}</p>
+      <a class="button" href={`/honey/${item.id}`}>
+        View Details
+      </a>
+    </div>
+  ))}
+</BaseLayout>

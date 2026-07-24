@@ -1,0 +1,27 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const honey = await getCollection("honey");
+  return honey.map((item) => ({
+    params: { slug: item.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("honey", slug);
+
+if (!entry) {
+  throw new Error("Honey not found");
+}
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title}>
+  <h1>{entry.data.title}</h1>
+  <p><em>{entry.data.description}</em></p>
+  <hr />
+  <Content />
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+const { title = "Schaefer Farms" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #222;
+      }
+
+      header {
+        background: #2e3a2f;
+        color: white;
+        padding: 1rem 2rem;
+      }
+
+      header a {
+        color: white;
+        text-decoration: none;
+        margin-right: 1rem;
+        font-weight: 500;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 2rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .card {
+        background: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      }
+
+      .card h2 {
+        margin-top: 0;
+      }
+
+      a.button {
+        display: inline-block;
+        background: #b8860b;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-top: 0.5rem;
+      }
+
+      a.button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <strong>Schaefer Farms</strong>
+      <nav style="margin-top: 0.5rem;">
+        <a href="/">Home</a>
+        <a href="/honey">Honey</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      © {new Date().getFullYear()} Schaefer Farms
+    </footer>
+  </body>
+</html>
