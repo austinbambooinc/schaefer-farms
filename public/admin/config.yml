@@ -45,11 +45,6 @@ collections:
         name: title
         widget: string
 
-      - label: Slug
-        name: slug
-        widget: string
-        hint: "URL-friendly name, for example: raw-wildflower-honey"
-
       - label: Description
         name: description
         widget: text
