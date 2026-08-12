@@ -1,5 +1,5 @@
 ---
-const { title = "Schaefer Farms" } = Astro.props;
+const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -8,6 +8,8 @@ const { title = "Schaefer Farms" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    {metaDescription && <meta name="description" content={metaDescription} />}
+    {metaKeywords && <meta name="keywords" content={metaKeywords} />}
     <style>
       body {
         font-family: system-ui, sans-serif;

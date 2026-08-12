@@ -85,15 +85,14 @@ collections:
         name: title
         widget: string
 
-      - label: Slug
-        name: slug
-        widget: string
-        hint: "Use home for homepage, contact for contact page, etc."
-
-      - label: SEO Description
-        name: description
-        widget: text
+      - label: SEO
+        name: seo
+        widget: object
         required: false
+        fields:
+          - { label: Meta Title, name: meta_title, widget: string, required: false, hint: "Overrides page title in browser tab & search results (optional)" }
+          - { label: Meta Description, name: meta_description, widget: text, required: false, hint: "Shown in search engine results only — not visible on the page" }
+          - { label: Meta Keywords, name: meta_keywords, widget: string, required: false, hint: "Comma-separated, optional" }
 
       - label: Featured Image
         name: image
@@ -120,12 +119,16 @@ collections:
 
       - label: Publish Date
         name: date
-        widget: datetime
+        widget: datetime 
 
-      - label: SEO Description
-        name: description
-        widget: text
+      - label: SEO
+        name: seo
+        widget: object
         required: false
+        fields:
+          - { label: Meta Title, name: meta_title, widget: string, required: false, hint: "Overrides page title in browser tab & search results (optional)" }
+          - { label: Meta Description, name: meta_description, widget: text, required: false, hint: "Shown in search engine results only — not visible on the page" }
+          - { label: Meta Keywords, name: meta_keywords, widget: string, required: false, hint: "Comma-separated, optional" }
 
       - label: Featured Image
         name: image
@@ -147,10 +150,6 @@ collections:
     fields:
       - label: Mineral Name
         name: title
-        widget: string
-
-      - label: Slug
-        name: slug
         widget: string
 
       - label: Description
