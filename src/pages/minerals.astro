@@ -1,9 +1,25 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const mineralItems = (await getCollection("minerals")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
 ---
 
 <BaseLayout title="Rocks & Minerals">
-  <h2>Rocks & Minerals</h2>
-  <p>Hand-selected mineral specimens for collectors and hobbyists.</p>
-  <p>Inventory varies — check back often.</p>
+  <h1>Rocks & Minerals</h1>
+
+  {mineralItems.length === 0 ? (
+    <p>Inventory varies — check back soon.</p>
+  ) : (
+    mineralItems.map((item) => (
+      <div class="card">
+        <h2>{item.data.title}</h2>
+        {item.data.description && <p>{item.data.description}</p>}
+        {item.data.price && <p><strong>{item.data.price}</strong></p>}
+        <a class="button" href={`/minerals/${item.id}`}>View Details</a>
+      </div>
+    ))
+  )}
 </BaseLayout>

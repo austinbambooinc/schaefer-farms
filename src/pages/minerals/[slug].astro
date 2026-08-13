@@ -1,0 +1,28 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const minerals = await getCollection("minerals");
+  return minerals.map((item) => ({
+    params: { slug: item.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry("minerals", slug);
+
+if (!entry) {
+  throw new Error("Mineral not found");
+}
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title}>
+  <h1>{entry.data.title}</h1>
+  {entry.data.price && <p><strong>{entry.data.price}</strong></p>}
+  {entry.data.description && <p><em>{entry.data.description}</em></p>}
+  <hr />
+  <Content />
+</BaseLayout>
