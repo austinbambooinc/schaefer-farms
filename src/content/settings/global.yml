@@ -1,5 +1,9 @@
 site_name: Schaefer Family Farms, LTD
 tagline: There's always something to work on.
 logo: /uploads/tractor-siloet-logo.jpg
+primary_color: "#5dda1a"
+accent_color: "#2dc1dd"
+background_color: "#d61919"
 font_family: "'Times New Roman', serif"
 contact_email: SchaeferFamilyFarms@yahoo.com
+nav_items: []
