@@ -177,3 +177,35 @@ collections:
         name: body
         widget: markdown
         required: false
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "global"
+        label: "Global Settings"
+        file: "src/content/settings/global.yml"
+        fields:
+          - { label: "Site Name", name: "site_name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }
+          - { label: "Mission Statement", name: "mission_statement", widget: "text", required: false }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Primary Color", name: "primary_color", widget: "color", required: false }
+          - { label: "Accent Color", name: "accent_color", widget: "color", required: false }
+          - { label: "Background Color", name: "background_color", widget: "color", required: false }
+          - label: "Font Family"
+            name: "font_family"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Serif (Georgia)", value: "'Georgia', serif" }
+              - { label: "Sans-serif (Helvetica)", value: "'Helvetica Neue', Arial, sans-serif" }
+              - { label: "Rounded (Poppins)", value: "'Poppins', sans-serif" }
+              - { label: "Classic (Times)", value: "'Times New Roman', serif" }
+          - { label: "Contact Email", name: "contact_email", widget: "string", required: false }
+          - label: "Navigation Items"
+            name: "nav_items"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
