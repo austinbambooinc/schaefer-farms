@@ -1,5 +1,32 @@
 ---
-const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
+import fs from "node:fs";
+import yaml from "js-yaml";
+
+const settingsPath = new URL("../content/settings/global.yml", import.meta.url);
+const settingsRaw = fs.readFileSync(settingsPath, "utf8");
+const settings = yaml.load(settingsRaw) as Record<string, any>;
+
+const {
+  site_name = "Schaefer Farms",
+  tagline = "",
+  logo = "",
+  primary_color = "#2e3a2f",
+  accent_color = "#b8860b",
+  background_color = "#f9f9f9",
+  font_family = "system-ui, sans-serif",
+  nav_items = [],
+  contact_email = "",
+} = settings ?? {};
+
+const navLinks =
+  nav_items.length > 0
+    ? nav_items
+    : [
+        { label: "Home", url: "/" },
+        { label: "Honey", url: "/honey" },
+      ];
+
+const { title = site_name, metaDescription, metaKeywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,19 +37,32 @@ const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
     <title>{title}</title>
     {metaDescription && <meta name="description" content={metaDescription} />}
     {metaKeywords && <meta name="keywords" content={metaKeywords} />}
-    <style>
+    <style define:vars={{
+      primaryColor: primary_color,
+      accentColor: accent_color,
+      backgroundColor: background_color,
+      fontFamily: font_family,
+    }}>
       body {
-        font-family: system-ui, sans-serif;
+        font-family: var(--fontFamily);
         margin: 0;
         padding: 0;
-        background: #f9f9f9;
+        background: var(--backgroundColor);
         color: #222;
       }
 
       header {
-        background: #2e3a2f;
+        background: var(--primaryColor);
         color: white;
         padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      header img.logo {
+        height: 40px;
+        border-radius: 4px;
       }
 
       header a {
@@ -60,7 +100,7 @@ const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
 
       a.button {
         display: inline-block;
-        background: #b8860b;
+        background: var(--accentColor);
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 6px;
@@ -76,11 +116,15 @@ const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
 
   <body>
     <header>
-      <strong>Schaefer Farms</strong>
-      <nav style="margin-top: 0.5rem;">
-        <a href="/">Home</a>
-        <a href="/honey">Honey</a>
-      </nav>
+      {logo && <img class="logo" src={logo} alt={site_name} />}
+      <div>
+        <strong>{site_name}</strong>
+        <nav style="margin-top: 0.5rem;">
+          {navLinks.map((item: { label: string; url: string }) => (
+            <a href={item.url}>{item.label}</a>
+          ))}
+        </nav>
+      </div>
     </header>
 
     <main>
@@ -88,7 +132,9 @@ const { title = "Schaefer Farms", metaDescription, metaKeywords } = Astro.props;
     </main>
 
     <footer>
-      © {new Date().getFullYear()} Schaefer Farms
+      © {new Date().getFullYear()} {site_name}
+      {tagline && <div>{tagline}</div>}
+      {contact_email && <div>{contact_email}</div>}
     </footer>
   </body>
 </html>
