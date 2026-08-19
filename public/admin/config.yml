@@ -37,7 +37,6 @@ collections:
     label_singular: Honey Product
     folder: src/content/honey
     create: true
-    slug: "{{slug}}"
     extension: md
     format: frontmatter
     fields:
@@ -77,7 +76,6 @@ collections:
     label_singular: Page
     folder: src/content/pages
     create: true
-    slug: "{{slug}}"
     extension: md
     format: frontmatter
     fields:
@@ -104,76 +102,73 @@ collections:
         widget: markdown
         required: false
 
-  - name: blog
-    label: Blog Posts
-    label_singular: Blog Post
-    folder: src/content/blog
+  - name: "blog"
+    label: "News/Blog"
+    folder: "src/content/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: md
-    format: frontmatter
+    extension: "md"
     fields:
-      - label: Title
-        name: title
-        widget: string
-
-      - label: Publish Date
-        name: date
-        widget: datetime 
-
-      - label: SEO
-        name: seo
-        widget: object
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", required: false, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
         required: false
         fields:
-          - { label: Meta Title, name: meta_title, widget: string, required: false, hint: "Overrides page title in browser tab & search results (optional)" }
-          - { label: Meta Description, name: meta_description, widget: text, required: false, hint: "Shown in search engine results only — not visible on the page" }
-          - { label: Meta Keywords, name: meta_keywords, widget: string, required: false, hint: "Comma-separated, optional" }
+          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+          - { label: "Meta Keywords", name: "meta_keywords", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
 
-      - label: Featured Image
-        name: image
-        widget: image
-        required: false
-
-      - label: Body
-        name: body
-        widget: markdown
-
-  - name: minerals
-    label: Minerals
-    label_singular: Mineral
-    folder: src/content/minerals
+  - name: "minerals"
+    label: "Minerals"
+    folder: "src/content/minerals"
     create: true
-    slug: "{{slug}}"
-    extension: md
-    format: frontmatter
+    extension: "md"
     fields:
-      - label: Mineral Name
-        name: title
-        widget: string
-
-      - label: Description
-        name: description
-        widget: text
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Price", name: "price", widget: "string", required: false, hint: "Example: $12.00" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
         required: false
+        fields:
+          - { label: "Meta Title", name: "meta_title", widget: "string", required: false }
+          - { label: "Meta Description", name: "meta_description", widget: "text", required: false }
+          - { label: "Meta Keywords", name: "meta_keywords", widget: "string", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
 
-      - label: Price
-        name: price
-        widget: string
-        required: false
-
-      - label: Image
-        name: image
-        widget: image
-        required: false
-
-      - label: Available
-        name: available
-        widget: boolean
-        default: true
-        required: false
-
-      - label: Body
-        name: body
-        widget: markdown
-        required: false
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "global"
+        label: "Global Settings"
+        file: "src/content/settings/global.yml"
+        fields:
+          - { label: "Site Name", name: "site_name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }
+          - { label: "Mission Statement", name: "mission_statement", widget: "text", required: false }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Primary Color", name: "primary_color", widget: "color", required: false }
+          - { label: "Accent Color", name: "accent_color", widget: "color", required: false }
+          - { label: "Background Color", name: "background_color", widget: "color", required: false }
+          - label: "Font Family"
+            name: "font_family"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Serif (Georgia)", value: "'Georgia', serif" }
+              - { label: "Sans-serif (Helvetica)", value: "'Helvetica Neue', Arial, sans-serif" }
+              - { label: "Rounded (Poppins)", value: "'Poppins', sans-serif" }
+              - { label: "Classic (Times)", value: "'Times New Roman', serif" }
+          - { label: "Contact Email", name: "contact_email", widget: "string", required: false }
+          - label: "Navigation Items"
+            name: "nav_items"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
