@@ -1,9 +1,22 @@
-site_name: Schaefer Family Farms, LTD
-tagline: There's always something to work on.
-logo: /uploads/tractor-siloet-logo.jpg
-primary_color: "#5dda1a"
-accent_color: "#2dc1dd"
-background_color: "#d61919"
-font_family: "'Times New Roman', serif"
-contact_email: SchaeferFamilyFarms@yahoo.com
-nav_items: []
+site_name: "Schaefer Farms"
+tagline: "Family-raised honey and hand-selected minerals."
+mission_statement: "We believe in sustainable, small-batch farming that respects the land and the animals that share it with us."
+logo: ""
+primary_color: "#2e3a2f"
+accent_color: "#b8860b"
+background_color: "#faf8f2"
+font_family: "'Georgia', serif"
+contact_email: ""
+nav_items:
+  - label: Home
+    url: /
+  - label: Honey
+    url: /honey/
+  - label: Minerals
+    url: /minerals/
+  - label: Blog
+    url: /blog/
+  - label: Contact
+    url: /contact/
+  - label: Farm News
+    url: /farm-news-and-updates/
