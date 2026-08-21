@@ -5,5 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://schaeferfarms.netlify.app',
-  integrations: [mdx(), sitemap()]
+  integrations: [mdx(), sitemap()],
+  vite: {
+    ssr: {
+      noExternal: ["js-yaml"],
+    },
+  },
 });

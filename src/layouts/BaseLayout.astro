@@ -1,10 +1,8 @@
 ---
-import fs from "node:fs";
-import yaml from "js-yaml";
+import { getEntry } from "astro:content";
 
-const settingsPath = new URL("../content/settings/global.yml", import.meta.url);
-const settingsRaw = fs.readFileSync(settingsPath, "utf8");
-const settings = yaml.load(settingsRaw) as Record<string, any>;
+const settingsEntry = await getEntry("settings", "global");
+const settings = settingsEntry?.data ?? {};
 
 const {
   site_name = "Schaefer Farms",
@@ -16,7 +14,7 @@ const {
   font_family = "system-ui, sans-serif",
   nav_items = [],
   contact_email = "",
-} = settings ?? {};
+} = settings;
 
 const navLinks =
   nav_items.length > 0
