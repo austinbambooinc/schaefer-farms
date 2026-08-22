@@ -17,6 +17,13 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
+
+const isBlogIndex = slug === "farm-news-and-updates";
+const posts = isBlogIndex
+  ? (await getCollection("blog")).sort(
+      (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    )
+  : [];
 ---
 
 <BaseLayout
@@ -31,4 +38,17 @@ const { Content } = await render(entry);
   <hr />
 
   <Content />
+
+  {isBlogIndex && posts.length > 0 && (
+    <ul>
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          <br />
+          <small>{post.data.date.toLocaleDateString()}</small>
+          {post.data.description && <p>{post.data.description}</p>}
+        </li>
+      ))}
+    </ul>
+  )}
 </BaseLayout>
