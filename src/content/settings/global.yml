@@ -1,12 +1,13 @@
-site_name: "Schaefer Farms"
-tagline: "Family-raised honey and hand-selected minerals."
-mission_statement: "We believe in sustainable, small-batch farming that respects the land and the animals that share it with us."
-logo: ""
-primary_color: "#2e3a2f"
-accent_color: "#b8860b"
-background_color: "#faf8f2"
+site_name: Schaefer Farms
+tagline: Family-raised honey and hand-selected minerals.
+mission_statement: We believe in sustainable, small-batch farming that respects
+  the land and the animals that share it with us.
+logo: /uploads/tractor-siloet-logo.jpg
+primary_color: "#33da41"
+accent_color: "#0b2fb8"
+background_color: "#aa871b"
 font_family: "'Georgia', serif"
-contact_email: ""
+contact_email: SchaeferFamilyFarms@yahoo.com
 nav_items:
   - label: Home
     url: /
